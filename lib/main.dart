@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projek_contact/home_screen.dart';
 import 'package:projek_contact/welcome_screen.dart';
 
 void main() {

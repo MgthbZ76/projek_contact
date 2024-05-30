@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:projek_contact/costomized_button.dart';
 import 'package:projek_contact/costomized_textfield.dart';
 import 'package:projek_contact/login.screen.dart';
@@ -13,7 +12,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _emailcontroller = TextEditingController();
-  TextEditingController _usernamecontroller = TextEditingController();
   TextEditingController _passwordcontroller = TextEditingController();
   TextEditingController _confirmpasswordcontroller = TextEditingController();
 
