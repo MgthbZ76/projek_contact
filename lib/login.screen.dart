@@ -73,7 +73,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         Navigator.push(context,
                         MaterialPageRoute(builder: (Context) =>ForgotPassword()));
                       },
-                      child: Text('Forget Password?',
+                      child: const Text('Forget Password?',
                         style: TextStyle(
                           color: Color(0xff6A707C),
                           fontSize: 15,
