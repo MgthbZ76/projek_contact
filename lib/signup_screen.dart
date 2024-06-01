@@ -1,26 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:projek_contact/costomized_button.dart';
 import 'package:projek_contact/costomized_textfield.dart';
 import 'package:projek_contact/login.screen.dart';
+import 'package:projek_contact/loading_screen.dart';// Import LoadingScreen
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController _emailcontroller = TextEditingController();
-  TextEditingController _usernamecontroller = TextEditingController();
-  TextEditingController _passwordcontroller = TextEditingController();
-  TextEditingController _confirmpasswordcontroller = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
+
+  Future<bool> _register() async {
+    // Di sini Anda dapat menambahkan logika untuk registrasi
+    // Misalnya, melakukan validasi, memanggil API, dll.
+    await Future.delayed(const Duration(seconds: 2)); // Contoh delay 2 detik
+    return true; // Kembalikan true jika registrasi berhasil
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height,
@@ -61,33 +69,54 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     )),
                   ),
                   CostomizedTextfield(
-                    myController: _emailcontroller,
+                    myController: _emailController,
                     hintText:'Email',
                     isPassword: false,
                     ),
                   CostomizedTextfield(
-                    myController: _passwordcontroller,
-                    hintText:'Password',
-                    isPassword: true,
+                    myController: _usernameController,
+                    hintText:'Username',
+                    isPassword: false,
                   ),
                    CostomizedTextfield(
-                    myController: _confirmpasswordcontroller,
+                    myController: _confirmPasswordController,
                     hintText:'Confirm Password',
                     isPassword: true,
                   ),
                    CostomizedTextfield(
-                    myController: _passwordcontroller,
+                    myController: _passwordController,
                     hintText:'Enter Your Password',
                     isPassword: true,
                   ),
-                CostomizedButton(
-                buttonText: 'Register',
-                buttonColor: Colors.black,
-                textColor: Colors.white,
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const Loginscreen()));
-                },
-              ),
+                _isLoading
+                    ? const LoadingScreen() // Tampilkan LoadingScreen jika _isLoading true
+                    : CostomizedButton(
+                        buttonText: 'Register',
+                        buttonColor: Colors.black,
+                        textColor: Colors.white,
+                        onPressed: () async {
+                          setState(() {
+                            _isLoading = true; // Set _isLoading menjadi true saat proses loading dimulai
+                          });
+
+                          // Lakukan proses registrasi
+                          bool success = await _register();
+
+                          setState(() {
+                            _isLoading = false; // Set _isLoading menjadi false setelah proses loading selesai
+                          });
+
+                          if (success) {
+                            // Navigasi ke layar login jika registrasi berhasil
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => const Loginscreen()));
+                          } else {
+                            // Tampilkan pesan kesalahan jika registrasi gagal
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text('Registration failed'),
+                            ));
+                          }
+                        },
+                      ),
               const SizedBox(
                 height: 40,
               ),
@@ -106,7 +135,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Navigator.push(context, 
                       MaterialPageRoute(builder: (_) => const Loginscreen()));
                     },
-                    child:  const Text(" Login Now",
+                    child:  const Text("Login Now",
                     style: TextStyle(
                       color: Color(0xff35C2C1),
                       fontSize: 15,
@@ -122,4 +151,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     ); 
   }
+
+  bool _isLoading = false; // Tambahkan boolean flag isLoading
 }

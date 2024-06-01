@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projek_contact/costomized_button.dart';
 import 'package:projek_contact/costomized_textfield.dart';
 import 'package:projek_contact/forgot_password.dart';
+import 'package:projek_contact/home_screen.dart';
+import 'package:projek_contact/signup_screen.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -17,6 +19,7 @@ class _LoginscreenState extends State<Loginscreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: double.infinity,
@@ -24,7 +27,7 @@ class _LoginscreenState extends State<Loginscreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),  
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -35,7 +38,6 @@ class _LoginscreenState extends State<Loginscreen> {
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black,width: 1),
                         borderRadius: BorderRadius.circular(10),
-                
                       ),
                       child: IconButton(
                         icon: const Icon(Icons.arrow_back),
@@ -67,13 +69,13 @@ class _LoginscreenState extends State<Loginscreen> {
                  Align(
                   alignment: Alignment.centerRight,
                   child: Padding(
-                    padding:  EdgeInsets.all(8.0),
+                    padding:  const EdgeInsets.all(8.0),
                     child:  InkWell(
                       onTap: () {
                         Navigator.push(context,
-                        MaterialPageRoute(builder: (Context) =>ForgotPassword()));
+                        MaterialPageRoute(builder: (_) =>const ForgotPassword()));
                       },
-                      child: Text('Forget Password?',
+                      child: const Text('Forget Password?',
                         style: TextStyle(
                           color: Color(0xff6A707C),
                           fontSize: 15,
@@ -86,34 +88,37 @@ class _LoginscreenState extends State<Loginscreen> {
               buttonColor: Colors.black,
               textColor: Colors.white,
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> const Loginscreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> HomeScreen()));
               },
             ),
             const SizedBox(
-              height: 140,
+              height: 40,
             ),
-            const Padding(
+             Padding(
               padding: const EdgeInsets.fromLTRB(48,8,8,8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("Don't have an account?",
+                  const Text("Don't have an account?",
                   style: TextStyle(
                     color: Color(0xff6A707C),
                     fontSize: 15,
                   )),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const SignUpScreen()));
+                    },
+                  child: const Text('Register Now',
+                  style: TextStyle(
+                    color: Color(0xff35C2C1),
+                    fontSize: 15,
+                  ),
+                  ),
+                  )
                 ],
               ),
             ),
-            const Row(
-              children: [
-                Text(" Register Now",
-                style: TextStyle(
-                  color: Color(0xff35C2C1),
-                  fontSize: 15,
-                )),
-              ],
-            )
             ],
           ),
         ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projek_contact/costomized_button.dart';
 import 'package:projek_contact/costomized_textfield.dart';
+import 'package:projek_contact/login.screen.dart';
+
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -55,7 +57,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   style: TextStyle(
                     color: Color(0xf8391A1),
                     fontSize: 20,
-                    // fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.bold,
                   ),),
                 ),
                 CostomizedTextfield(
@@ -71,12 +73,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     Navigator.pop(context);
                   },
                 ),
-
-                Spacer(
-                  flex: 1,
+                const SizedBox(
+                  height: 40,
                 ),
                 Padding(
-                padding: const EdgeInsets.fromLTRB(68,8,8,8.0),
+                padding: const EdgeInsets.fromLTRB(48,8,8,8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -87,9 +88,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     )),
                     InkWell(
                     onTap: (){
-                      
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const Loginscreen()));
                     },
-                    child:  const Text(" Login",
+                    child:  const Text("Login",
                     style: TextStyle(
                       color: Color(0xff35C2C1),
                       fontSize: 15,
