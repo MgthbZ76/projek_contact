@@ -12,6 +12,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+
   TextEditingController _emailController = TextEditingController();
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -46,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 50,
                         width: 50,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black,width: 1),
+                          border: Border.all(color: Colors.white,width: 1),
                           borderRadius: BorderRadius.circular(10),
                   
                         ),
