@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projek_contact/component/costomized_button.dart';
 import 'package:projek_contact/component/costomized_textfield.dart';
-import 'package:projek_contact/login.screen.dart';
+import 'package:projek_contact/page/login.screen.dart';
 
 
 class ForgotPassword extends StatefulWidget {

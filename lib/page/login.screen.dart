@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projek_contact/component/costomized_button.dart';
 import 'package:projek_contact/component/costomized_textfield.dart';
-import 'package:projek_contact/forgot_password.dart';
-import 'package:projek_contact/home_screen.dart';
-import 'package:projek_contact/signup_screen.dart';
+import 'package:projek_contact/page/forgot_password.dart';
+import 'package:projek_contact/page/home_screen.dart';
+import 'package:projek_contact/page/signup_screen.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});

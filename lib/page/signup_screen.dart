@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projek_contact/component/costomized_button.dart';
 import 'package:projek_contact/component/costomized_textfield.dart';
-import 'package:projek_contact/login.screen.dart';
-import 'package:projek_contact/loading_screen.dart';// Import LoadingScreen
+import 'package:projek_contact/page/login.screen.dart';
+import 'package:projek_contact/page/loading_screen.dart';// Import LoadingScreen
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
