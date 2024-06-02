@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projek_contact/costomized_button.dart';
-import 'package:projek_contact/costomized_textfield.dart';
+import 'package:projek_contact/component/costomized_button.dart';
+import 'package:projek_contact/component/costomized_textfield.dart';
 import 'package:projek_contact/forgot_password.dart';
 import 'package:projek_contact/home_screen.dart';
 import 'package:projek_contact/signup_screen.dart';

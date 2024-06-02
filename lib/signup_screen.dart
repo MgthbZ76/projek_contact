@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projek_contact/costomized_button.dart';
-import 'package:projek_contact/costomized_textfield.dart';
+import 'package:projek_contact/component/costomized_button.dart';
+import 'package:projek_contact/component/costomized_textfield.dart';
 import 'package:projek_contact/login.screen.dart';
 import 'package:projek_contact/loading_screen.dart';// Import LoadingScreen
 

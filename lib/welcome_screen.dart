@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projek_contact/costomized_button.dart';
+import 'package:projek_contact/component/costomized_button.dart';
 import 'package:projek_contact/login.screen.dart';
 import 'package:projek_contact/signup_screen.dart';
 
