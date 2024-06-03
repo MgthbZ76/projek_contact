@@ -36,9 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
       await SQLHelper.createData(
         _nameController.text, 
         _numberController.text as int, 
-        _emailController as String, 
-        _categoryController as int,
-        _notesController as String
+        _emailController.text, 
+        _categoryController.text as int,
+        _notesController.text
       );
       _refreshData();
     }
