@@ -30,8 +30,15 @@ class _SearchScreenState extends State<SearchScreen> {
     final filtered = _allData.where((element) {
       final nameLower = (element['name'] ?? '').toLowerCase();
       final numberLower = (element['number'] ?? '').toLowerCase();
+      final emailLower = (element['email'] ?? '').toLowerCase();
+      final categoryLower = (element['category'] ?? '').toLowerCase();
+      final notesLower = (element['notes'] ?? '').toLowerCase();
       final searchLower = query.toLowerCase();
-      return nameLower.contains(searchLower) || numberLower.contains(searchLower);
+      return nameLower.contains(searchLower) ||
+             numberLower.contains(searchLower) ||
+             emailLower.contains(searchLower) ||
+             categoryLower.contains(searchLower) ||
+             notesLower.contains(searchLower);
     }).toList();
 
     setState(() {
@@ -53,7 +60,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 _filterData(value);
               },
               decoration: const InputDecoration(
-                hintText: 'Search by name or number',
+                hintText: 'Search by name, number, email, category or notes',
                 border: OutlineInputBorder(),
                 fillColor: Colors.white,
                 filled: true,
@@ -75,11 +82,19 @@ class _SearchScreenState extends State<SearchScreen> {
                       title: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Text(
-                          _filteredData[index]['name'],
+                          _filteredData[index]['name'] ?? '',
                           style: const TextStyle(fontSize: 20),
                         ),
                       ),
-                      subtitle: Text(_filteredData[index]['number']),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(_filteredData[index]['number'] ?? ''),
+                          Text(_filteredData[index]['email'] ?? ''),
+                          Text(_filteredData[index]['category'] ?? ''),
+                          Text(_filteredData[index]['notes'] ?? ''),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -6,9 +6,9 @@ class SQLHelper {
       CREATE TABLE `data_kontak` (
         `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         `name` TEXT,
-        `number` INTEGER,
+        `number` TEXT,
         `email` TEXT,
-        `category` INTEGER,
+        `category` TEXT,
         `notes` TEXT
       )
     """);
@@ -26,9 +26,9 @@ class SQLHelper {
 
   static Future<int> createData(
     String name, 
-    int number, 
+    String number, 
     String email, 
-    int category, 
+    String category, 
     String notes
   ) async {
     final db = await SQLHelper.db();
@@ -51,9 +51,9 @@ class SQLHelper {
   static Future<int> updateData(
     int id, 
     String name, 
-    int number,
+    String number,
     String email, 
-    int category,
+    String category,
     String notes
   ) async {
     final db = await SQLHelper.db();
