@@ -1,9 +1,14 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projek_contact/db_helper.dart';
 import 'search_screen.dart';
 import 'detail_screen.dart'; // Import the DetailScreen
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -28,14 +33,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _addData() async {
     if (_formkeys.currentState!.validate()) {
-      await SQLHelper.createData(_nameController.text, _numberController.text);
+      await SQLHelper.createData(
+        _nameController.text, 
+        _numberController.text as int, 
+        _emailController as String, 
+        _categoryController as int,
+        _notesController as String
+      );
       _refreshData();
     }
   }
 
   Future<void> _updateData(int id) async {
     if (_formkeys.currentState!.validate()) {
-      await SQLHelper.updateData(id, _nameController.text, _numberController.text);
+      await SQLHelper.updateData(
+        id, 
+        _nameController.text, 
+        _numberController.text as int, 
+        _emailController as String, 
+        _categoryController as int,
+        _notesController as String
+      );
       _refreshData();
     }
   }
@@ -52,15 +70,21 @@ class _HomeScreenState extends State<HomeScreen> {
   final _formkeys = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _categoryController = TextEditingController();
+  final TextEditingController _notesController = TextEditingController();
 
   void showBottomSheet(int? id) async {
     if (id != null) {
       final existingData = _allData.firstWhere(
         (element) => element['id'] == id,
-        orElse: () => {},
+        // orElse: () => {},
       );
       _nameController.text = existingData['name'] ?? '';
-      _numberController.text = existingData['number'] ?? '';
+      _numberController.text = existingData['number'] ?? 0;
+      _emailController.text = existingData['email'] ?? '';
+      _categoryController.text = existingData['category'] ?? 0;
+      _notesController.text = existingData['notes'] ?? '-';
     }
 
     showModalBottomSheet(
@@ -80,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              // Name
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -94,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               const SizedBox(height: 10),
+              // Number
               TextFormField(
                 controller: _numberController,
                 maxLength: 13,
@@ -102,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   hintText: 'number',
                 ),
                 keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 validator: (number) {
                   if (number == null || number.isEmpty) {
                     return 'Number should be at least 1 character';
@@ -109,6 +136,55 @@ class _HomeScreenState extends State<HomeScreen> {
                   return null;
                 },
               ),
+              // email
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'email',
+                ),
+                validator: (email) {
+                  if (email == null || email.isEmpty) {
+                    return 'Email should be at least 1 character';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 10),
+              // Category
+              TextFormField(
+                controller: _categoryController,
+                // maxLength: 13,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'category',
+                ),
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                validator: (category) {
+                  if (category == null || category.isEmpty) {
+                    return 'Category should be at least 1 character';
+                  }
+                  return null;
+                },
+              ),
+              // email
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _notesController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'notes',
+                ),
+                // validator: (notes) {
+                //   if (notes == null || notes.isEmpty) {
+                //     return 'Notes should be at least 1 character';
+                //   }
+                //   return null;
+                // },
+              ),
+
               const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
@@ -121,6 +197,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
                       _nameController.text = '';
                       _numberController.text = '';
+                      _emailController.text = '';
+                      _categoryController.text = '';
+                      _notesController.text = '-';
+
                       Navigator.of(context).pop();
                       print('Data Added');
                     }
