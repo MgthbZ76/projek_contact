@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projek_contact/page/calls_screen.dart';
 import 'package:projek_contact/page/home_screen.dart';
 
 class ParentPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class _ParentPageState extends State<ParentPage> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const CallsPage(),
+    const CallsScreen(),
     const ProfilePage(),
   ];
 
@@ -26,9 +27,6 @@ class _ParentPageState extends State<ParentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('BottomNavigationBar Demo'),
-      // ),
       body: _pages.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -52,20 +50,6 @@ class _ParentPageState extends State<ParentPage> {
   }
 }
 
-class CallsPage extends StatefulWidget {
-  const CallsPage({super.key});
-
-  @override
-  _CallsPageState createState() => _CallsPageState();
-}
-
-class _CallsPageState extends State<CallsPage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Text('Calls Page!');
-  }
-}
-
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -76,6 +60,13 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return const Text('Profile Page!');
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text('Profile'),
+      ),
+    );
   }
 }
