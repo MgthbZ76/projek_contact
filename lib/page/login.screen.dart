@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projek_contact/component/costomized_button.dart';
 import 'package:projek_contact/component/costomized_textfield.dart';
+import 'package:projek_contact/page/_parentpage.dart';
 import 'package:projek_contact/page/forgot_password.dart';
-import 'package:projek_contact/page/home_screen.dart';
+// import 'package:projek_contact/page/home_screen.dart';
 import 'package:projek_contact/page/signup_screen.dart';
 
 class Loginscreen extends StatefulWidget {
@@ -70,7 +71,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   alignment: Alignment.centerRight,
                   child: Padding(
                     padding:  const EdgeInsets.all(8.0),
-                    child:  InkWell(
+                    child: InkWell(
                       onTap: () {
                         Navigator.push(context,
                         MaterialPageRoute(builder: (_) =>const ForgotPassword()));
@@ -88,7 +89,7 @@ class _LoginscreenState extends State<Loginscreen> {
               buttonColor: Colors.black,
               textColor: Colors.white,
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> const HomeScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const ParentPage()));
               },
             ),
             const SizedBox(
