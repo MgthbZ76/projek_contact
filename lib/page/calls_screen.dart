@@ -28,7 +28,7 @@ class _CallsScreenState extends State<CallsScreen> {
   Widget inputField() {
     return Container(
       color: Colors.white,
-      height: 50,
+      height: 60,
       alignment: Alignment.bottomCenter,
       child: TextFormField(
         textAlign: TextAlign.center,
@@ -41,6 +41,7 @@ class _CallsScreenState extends State<CallsScreen> {
 
   Widget gridView() { 
     return Container(
+      width: 500,
       padding: const EdgeInsets.only(left: 80, right: 80, top: 60),
       child: GridView.count(
         crossAxisCount: 3,
