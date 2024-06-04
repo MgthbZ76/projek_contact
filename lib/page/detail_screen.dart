@@ -27,39 +27,34 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Text(
-                'Name: ${contact['name']}',
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
+              buildDetailRow(icon: Icons.person, label: 'Name', value: contact['name']),
               const SizedBox(height: 20),
-              Text(
-                'Number: ${contact['number']}',
-                style: const TextStyle(fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
+              buildDetailRow(icon: Icons.phone, label: 'Number', value: contact['number']),
               const SizedBox(height: 20),
-              Text(
-                'Email: ${contact['email']}',
-                style: const TextStyle(fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
+              buildDetailRow(icon: Icons.email, label: 'Email', value: contact['email']),
               const SizedBox(height: 20),
-              Text(
-                'Category: ${contact['category']}',
-                style: const TextStyle(fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
+              buildDetailRow(icon: Icons.category, label: 'Category', value: contact['category']),
               const SizedBox(height: 20),
-              Text(
-                'Notes: ${contact['notes']}',
-                style: const TextStyle(fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
+              buildDetailRow(icon: Icons.notes, label: 'Notes', value: contact['notes']),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildDetailRow({required IconData icon, required String label, required String value}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, size: 24),
+        const SizedBox(width: 10),
+        Text(
+          '$label: $value',
+          style: const TextStyle(fontSize: 20),
+          textAlign: TextAlign.center,
+        ),
+      ],
     );
   }
 }

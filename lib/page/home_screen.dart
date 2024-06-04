@@ -73,154 +73,154 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _notesController = TextEditingController();
 
   void showBottomSheet(int? id) async {
-  if (id != null) {
-    final existingData = _allData.firstWhere(
-      (element) => element['id'] == id,
-      orElse: () => {},
-    );
-    _nameController.text = existingData['name'] ?? '';
-    _numberController.text = existingData['number'] ?? '';
-    _emailController.text = existingData['email'] ?? '';
-    _categoryController.text = existingData['category'] ?? '';
-    _notesController.text = existingData['notes'] ?? '-';
-  } else {
-    _nameController.clear();
-    _numberController.clear();
-    _emailController.clear();
-    _categoryController.clear();
-    _notesController.clear();
-  }
+    if (id != null) {
+      final existingData = _allData.firstWhere(
+        (element) => element['id'] == id,
+        orElse: () => {},
+      );
+      _nameController.text = existingData['name'] ?? '';
+      _numberController.text = existingData['number'] ?? '';
+      _emailController.text = existingData['email'] ?? '';
+      _categoryController.text = existingData['category'] ?? '';
+      _notesController.text = existingData['notes'] ?? '-';
+    } else {
+      _nameController.clear();
+      _numberController.clear();
+      _emailController.clear();
+      _categoryController.clear();
+      _notesController.clear();
+    }
 
-  showModalBottomSheet(
-    elevation: 5,
-    isScrollControlled: true,
-    context: context,
-    builder: (_) => SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.only(
-          top: 30,
-          left: 15,
-          right: 15,
-          bottom: MediaQuery.of(context).viewInsets.bottom + 50,
-        ),
-        child: Form(
-          key: _formkeys,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              // Name
-              TextFormField(
-                controller: _nameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'name',
-                  prefixIcon: Icon(Icons.person),  // Icon added here
-                ),
-                validator: (name) {
-                  if (name == null || name.isEmpty) {
-                    return 'Name should be at least 1 character';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 10),
-              // Number
-              TextFormField(
-                controller: _numberController,
-                maxLength: 13,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'number',
-                  prefixIcon: Icon(Icons.phone),  // Icon added here
-                ),
-                keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                validator: (number) {
-                  if (number == null || number.isEmpty) {
-                    return 'Number should be at least 1 character';
-                  }
-                                      return null;
-                },
-              ),
-              const SizedBox(height: 10),
-              // Email
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'email',
-                  prefixIcon: Icon(Icons.email),  // Icon added here
-                ),
-                validator: (email) {
-                  if (email == null || email.isEmpty) {
-                    return 'Email should be at least 1 character';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 10),
-              // Category
-              TextFormField(
-                controller: _categoryController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'category',
-                  prefixIcon: Icon(Icons.category),  // Icon added here
-                ),
-                validator: (category) {
-                  if (category == null || category.isEmpty) {
-                    return 'Category should be at least 1 character';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 10),
-              // Notes
-              TextFormField(
-                controller: _notesController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'notes',
-                  prefixIcon: Icon(Icons.notes),  // Icon added here
-                ),
-              ),
-              const SizedBox(height: 20),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    if (_formkeys.currentState!.validate()) {
-                      if (id == null) {
-                        await _addData();
-                      } else {
-                        await _updateData(id);
-                      }
-                      _nameController.text = '';
-                      _numberController.text = '';
-                      _emailController.text = '';
-                      _categoryController.text = '';
-                      _notesController.text = '-';
-
-                      Navigator.of(context).pop();
-                      print('Data Added');
+    showModalBottomSheet(
+      elevation: 5,
+      isScrollControlled: true,
+      context: context,
+      builder: (_) => SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 30,
+            left: 15,
+            right: 15,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 50,
+          ),
+          child: Form(
+            key: _formkeys,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                // Name
+                TextFormField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'name',
+                    prefixIcon: Icon(Icons.person),  // Icon added here
+                  ),
+                  validator: (name) {
+                    if (name == null || name.isEmpty) {
+                      return 'Name should be at least 1 character';
                     }
+                    return null;
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(18),
-                    child: Text(
-                      id == null ? 'Add Data' : 'Update',
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(height: 10),
+                // Number
+                TextFormField(
+                  controller: _numberController,
+                  maxLength: 13,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'number',
+                    prefixIcon: Icon(Icons.phone),  // Icon added here
+                  ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  validator: (number) {
+                    if (number == null || number.isEmpty) {
+                      return 'Number should be at least 1 character';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 10),
+                // Email
+                TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'email',
+                    prefixIcon: Icon(Icons.email),  // Icon added here
+                  ),
+                  validator: (email) {
+                    if (email == null || email.isEmpty) {
+                      return 'Email should be at least 1 character';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 10),
+                // Category
+                TextFormField(
+                  controller: _categoryController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'category',
+                    prefixIcon: Icon(Icons.category),  // Icon added here
+                  ),
+                  validator: (category) {
+                    if (category == null || category.isEmpty) {
+                      return 'Category should be at least 1 character';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 10),
+                // Notes
+                TextFormField(
+                  controller: _notesController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'notes',
+                    prefixIcon: Icon(Icons.notes),  // Icon added here
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (_formkeys.currentState!.validate()) {
+                        if (id == null) {
+                          await _addData();
+                        } else {
+                          await _updateData(id);
+                        }
+                        _nameController.text = '';
+                        _numberController.text = '';
+                        _emailController.text = '';
+                        _categoryController.text = '';
+                        _notesController.text = '-';
+
+                        Navigator.of(context).pop();
+                        print('Data Added');
+                      }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(18),
+                      child: Text(
+                        id == null ? 'Add Data' : 'Update',
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
 
   @override
@@ -259,10 +259,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(_allData[index]['number'] ?? ''),
-                      Text(_allData[index]['email'] ?? ''),
-                      Text(_allData[index]['category'] ?? ''),
-                      Text(_allData[index]['notes'] ?? ''),
+                      buildDetailRow(Icons.phone, _allData[index]['number'] ?? ''),
+                      buildDetailRow(Icons.email, _allData[index]['email'] ?? ''),
+                      buildDetailRow(Icons.category, _allData[index]['category'] ?? ''),
+                      buildDetailRow(Icons.notes, _allData[index]['notes'] ?? ''),
                     ],
                   ),
                   trailing: Row(
@@ -304,5 +304,19 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
 
+  Widget buildDetailRow(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(icon, size: 20),
+        const SizedBox(width: 5),
+        Expanded(
+          child: Text(
+            text,
+            style: const TextStyle(fontSize: 16),
+          ),
+        ),
+      ],
+    );
+  }
+}
