@@ -33,6 +33,8 @@ class _CallsScreenState extends State<CallsScreen> {
       child: TextFormField(
         textAlign: TextAlign.center,
         style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        readOnly: true,
+        enableInteractiveSelection: false,
         controller: textfield,
         decoration: const InputDecoration(border: InputBorder.none),
       ),

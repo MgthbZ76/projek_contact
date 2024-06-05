@@ -66,6 +66,83 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text('Profile'),
+        actions: const [
+          Icon(Icons.more_vert),
+        ],
+      ),
+      body: SafeArea(
+        minimum: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(2),
+              width: double.infinity,
+              child: const Row(
+                children: [
+                  Text(
+                    'Username: ',
+                    style: TextStyle(
+                      fontSize: 16, 
+                      color: Colors.black, 
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(
+                    'Budi',
+                    style: TextStyle(
+                      fontSize: 16, 
+                      color: Colors.black, 
+                      fontWeight: FontWeight.bold
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ]
+              )
+            ),
+            Container(
+              padding: const EdgeInsets.all(2),
+              width: double.infinity,
+              child: const Row(
+                children: [
+                  Text(
+                    'Email: ',
+                    style: TextStyle(
+                      fontSize: 16, 
+                      color: Colors.black, 
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(
+                    'budi01@gmail.com ',
+                    style: TextStyle(
+                      fontSize: 16, 
+                      color: Colors.black, 
+                      fontWeight: FontWeight.bold
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  Icon(
+                    Icons.verified,
+                    color: Colors.green,
+                  ), 
+                ]
+              )
+            ),
+            Container(
+              padding: const EdgeInsets.all(2),
+              width: double.infinity,
+              child: const Text(
+                'You have 20 contact on your phone',
+                style: TextStyle( 
+                  fontSize: 14, 
+                  color: Colors.grey, 
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
