@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projek_contact/page/calls_screen.dart';
+import 'package:projek_contact/page/forgot_password.dart';
 import 'package:projek_contact/page/home_screen.dart';
 
 class ParentPage extends StatefulWidget {
@@ -139,6 +140,21 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Colors.grey, 
                 ),
                 textAlign: TextAlign.left,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(2),
+              width: double.infinity,
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                  MaterialPageRoute(builder: (_) =>const ForgotPassword()));
+                },
+                child: const Text('Change password',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                  )),
               ),
             ),
           ],

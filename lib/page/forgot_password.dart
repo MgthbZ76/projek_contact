@@ -55,7 +55,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   padding: EdgeInsets.all(8.0),
                   child: Text("Don't worry it occurs to us all. We will send you a link to reset your password.",
                   style: TextStyle(
-                    color: Color(0xf8391A1),
+                    color: Color.fromARGB(255, 50, 50, 50),
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),),
