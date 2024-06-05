@@ -63,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(int.parse('F3F3F3', radix: 16) + 0xFF000000),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text('Profile'),
